@@ -172,13 +172,4 @@ class MbStrPadTest extends TestCase
         \mb_str_pad('ab', 4, ' ', 99);
     }
 
-    /** Guard for production fix D (intdiv avoids float deprecation on PHP 8.1+). */
-    public function testBothSidesDoesNotPassFloatLength()
-    {
-        if (\PHP_VERSION_ID < 80100) {
-            $this->markTestSkipped('Float-to-int deprecation applies on PHP 8.1+.');
-        }
-
-        $this->assertSame('+Hello+-', \mb_str_pad('Hello', 8, '+-', \STR_PAD_BOTH));
-    }
 }

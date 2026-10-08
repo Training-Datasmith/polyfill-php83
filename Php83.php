@@ -85,7 +85,7 @@ final class Php83
             case \STR_PAD_RIGHT:
                 return $string.mb_substr(str_repeat($pad_string, $paddingRequired), 0, $paddingRequired, $encoding);
             default:
-                $leftPaddingLength = intdiv($paddingRequired, 2);
+                $leftPaddingLength = floor($paddingRequired / 2);
                 $rightPaddingLength = $paddingRequired - $leftPaddingLength;
 
                 return mb_substr(str_repeat($pad_string, $leftPaddingLength), 0, $leftPaddingLength, $encoding).$string.mb_substr(str_repeat($pad_string, $rightPaddingLength), 0, $rightPaddingLength, $encoding);

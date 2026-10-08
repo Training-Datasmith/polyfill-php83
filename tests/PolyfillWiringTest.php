@@ -77,7 +77,11 @@ class PolyfillWiringTest extends TestCase
     public function testValueErrorStubOnlyOnPhp7()
     {
         if (\PHP_VERSION_ID >= 80000) {
-            $this->assertFalse((new \ReflectionClass(\ValueError::class))->isUserDefined());
+            require __DIR__.'/../Resources/stubs/ValueError.php';
+
+            $reflection = new \ReflectionClass(\ValueError::class);
+            $this->assertTrue($reflection->isInternal());
+            $this->assertFalse($reflection->getFileName());
 
             return;
         }
